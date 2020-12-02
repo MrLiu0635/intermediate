@@ -1,0 +1,15 @@
+/.mvn
+/.idea
+./**/*.iml
+/target
+/intermediate-api/intermediate-api.iml
+/intermediate.iml
+/intermediate-core/intermediate-core.iml
+/app/app.iml
+*/*.iml
+*/target
+
+/intermediate-api/target/
+/intermediate-core/target/
+/app/target/
+
