@@ -6,11 +6,10 @@ import com.inspur.edp.lcm.zhaoleitr.core.utils.RedisUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 
-@Controller
+@RestController
 @Slf4j
 public class Material4webapiImpl {
 	@Autowired
@@ -19,7 +18,6 @@ public class Material4webapiImpl {
 	@Autowired
 	RedisUtils redisUtils;
 
-	@ResponseBody
 	@RequestMapping("/hello")
 	public String getMaterial() {
 		if (redisUtils.get("1") != null) {
@@ -32,5 +30,33 @@ public class Material4webapiImpl {
 		return "hello";
 	}
 
+	@PutMapping("/hello/save")
+	public void updateMaterial(Material material) {
+		materialService.save(material);
+	}
 
+	@PostMapping("/hello/save")
+	public void createMaterial(Material material) {
+		materialService.save(material);
+	}
+
+	@RequestMapping(path="hello",params = {"id","quantity"})
+	public Material get(int id,String quantity) {
+		return materialService.getMaterial(id);
+	}
+
+	@RequestMapping(path="hello/{id}")
+	public Material getById(@PathVariable Integer id) {
+		return materialService.getMaterial(id);
+	}
+
+	@DeleteMapping(path="hello/{id}")
+	public void deleteMaterial(@PathVariable Integer id) {
+		materialService.deleteMaterial(id);
+	}
+
+	@PostMapping("/hello/savejson")
+	public void createMaterialWithJson(@RequestBody Material material) {
+		materialService.save(material);
+	}
 }

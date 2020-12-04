@@ -16,4 +16,14 @@ public class MaterialServiceImpl implements MaterialService{
 	public Material getMaterial(int id) {
 		return repository.findById(id).orElse(null);
 	}
+
+	@Override
+	public void save(Material material){
+		repository.save(material);
+	}
+
+	@Override
+	public void deleteMaterial(int id) {
+		repository.deleteById(id);
+	}
 }
