@@ -1,0 +1,78 @@
+version: "3"
+services:
+  rd:
+    #image: redis:5
+    image: redis:6.0.1
+    ports:
+      - "6379:6379"
+    networks:
+      - webnet
+    depends_on:
+      - webnet
+  db0:
+    image: yisiqi/postgres-asciinema:11
+    ports:
+      - "5434:5432"
+    networks:
+      - webnet
+    environment:
+      - POSTGRES_PASSWORD=aaaaaa
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+    depends_on:
+      - webnet
+  nginx:
+    image: nginx:stable
+    # 对外使用81端口
+    ports:
+      - "81:80"
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+    networks:
+      - webnet
+    volumes:
+      - "./nginx.conf:/etc/nginx/conf.d/default.conf"
+    depends_on:
+      - webnet
+  core:
+    image: gdc.docker.iec.io/demo:liu.zhao-20201204
+    # 可以去掉port
+    ports:
+      - "8091:8080"
+    networks:
+      - webnet
+    environment:
+      - SPRING_REDIS_HOST=rd
+      - SPRING_REDIS_PORT=6379
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db0:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=aaaaaa
+    depends_on:
+      - rd
+      - db0
+      - webnet
+  core2:
+    image: gdc.docker.iec.io/demo:liu.zhao-20201204
+    # 可以去掉port
+    ports:
+      - "8092:8080"
+    networks:
+      - webnet
+    environment:
+      - SPRING_REDIS_HOST=rd
+      - SPRING_REDIS_PORT=6379
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db0:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=aaaaaa
+    depends_on:
+      - rd
+      - db0
+      - webnet
+networks:
+  webnet:
