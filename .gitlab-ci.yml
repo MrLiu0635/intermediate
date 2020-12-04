@@ -1,8 +1,5 @@
 stages:
   - build
-  - test
-  - package
-  - deploy
 
 variables:
   # Maven
@@ -30,56 +27,6 @@ Build with Maven:
       - .mvn/repository/
   image: openjdk:8-stretch
   script:
-    - ./mvnw archetype:create-from-project
-#  artifacts:
-#    paths:
-#      - caf-boot-parent/target/app.jar
-#    expire_in: 10d
-
-
-
-Run Java unit tests:
-  stage: test
-  tags:
-    - alicloud
-  except:
-    variables:
-      - $CI_COMMIT_MESSAGE =~ /^Helm debug:\ .*/
-  cache:
-    paths:
-      - .mvn/wrapper/maven-wrapper.jar
-      - .mvn/wrapper/dists/
-      - .mvn/repository/
-  services:
-    - name: redis:latest
-      alias: redis
-    - name: postgres:10
-      alias: postgres
-  image: openjdk:8-stretch
-  script:
-    - ./mvnw -U clean clover:setup test clover:aggregate clover:clover
-    - ./mvnw -Dmaven.clover.singleCloverDatabase=true clover:log
-  coverage: '/^ {8}Total\: (\d+%|\d+\.\d+%)/'
-  artifacts:
-    paths:
-      - target/site/clover
-    expire_in: 10d
-  dependencies: []
-
-
-Package:
-  stage: package
-  tags:
-    - alicloud
-  only:
-    - master
-    - tags
-  cache:
-    paths:
-      - .mvn/wrapper/maven-wrapper.jar
-      - .mvn/wrapper/dists/
-      - .mvn/repository/
-  image: openjdk:8-stretch
-  script:
-    - ./mvnw -DskipTests=true clean deploy
+    - chmod +x ./mvnw
+    - ./mvnw clean isntall
 
