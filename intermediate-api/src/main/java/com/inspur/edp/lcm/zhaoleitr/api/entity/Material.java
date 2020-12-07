@@ -1,5 +1,6 @@
 package com.inspur.edp.lcm.zhaoleitr.api.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -11,7 +12,12 @@ import javax.persistence.Table;
 @Data
 public class Material {
 	@Id
-	private int id;
+	private Integer id;
 
-	private float quantity;
+	private String name;
+
+	private String unit;
+
+	@JsonProperty("unit_price")
+	private String unitPrice;
 }

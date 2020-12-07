@@ -1,0 +1,272 @@
+{
+	"info": {
+		"_postman_id": "839e4717-ab47-4922-ad43-76b3bd6ee99e",
+		"name": "scram",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "putstock",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"material_id\":1,\"quantity\":10.5}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://10.110.85.176:8088/stock",
+					"protocol": "http",
+					"host": [
+						"10",
+						"110",
+						"85",
+						"176"
+					],
+					"port": "8088",
+					"path": [
+						"stock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getstock",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://10.110.85.176:8088/stock",
+					"protocol": "http",
+					"host": [
+						"10",
+						"110",
+						"85",
+						"176"
+					],
+					"port": "8088",
+					"path": [
+						"stock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/hello",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/hello",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"hello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sear",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "number",
+							"value": "3",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "document_type",
+							"value": "common_order",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "sal_employee",
+							"value": "wubai",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "customer",
+							"value": "张三",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "from_date",
+							"value": "2001-01-01 01:01:02",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "to_date",
+							"value": "2022-01-01 01:01:02",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "from_total_amount",
+							"value": "19325",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "to_total_amount",
+							"value": "20000",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "material_ids",
+							"value": "22",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://10.110.85.176:8088/search_sale_order",
+					"protocol": "http",
+					"host": [
+						"10",
+						"110",
+						"85",
+						"176"
+					],
+					"port": "8088",
+					"path": [
+						"search_sale_order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "document_type",
+							"value": "common_order",
+							"type": "text"
+						},
+						{
+							"key": "biz_date",
+							"value": "2020-01-01 01:01:02",
+							"type": "text"
+						},
+						{
+							"key": "sal_employee",
+							"value": "wubai",
+							"type": "text"
+						},
+						{
+							"key": "customer",
+							"value": "张三",
+							"type": "text"
+						},
+						{
+							"key": "sale_order_line",
+							"value": "[{\"quantity\":2.45, \"material_id\":1}]",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://10.110.85.176:8088/sale_order",
+					"protocol": "http",
+					"host": [
+						"10",
+						"110",
+						"85",
+						"176"
+					],
+					"port": "8088",
+					"path": [
+						"sale_order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "document_type",
+							"value": "service_order",
+							"type": "text"
+						},
+						{
+							"key": "biz_date",
+							"value": "2020-01-01 01:01:03",
+							"type": "text"
+						},
+						{
+							"key": "sal_employee",
+							"value": "张丽",
+							"type": "text"
+						},
+						{
+							"key": "customer",
+							"value": "张鸿逵",
+							"type": "text"
+						},
+						{
+							"key": "sale_order_line",
+							"value": "[{\"quantity\":1, \"material_id\":1}]",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://10.110.85.176:8088/sale_order",
+					"protocol": "http",
+					"host": [
+						"10",
+						"110",
+						"85",
+						"176"
+					],
+					"port": "8088",
+					"path": [
+						"sale_order"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

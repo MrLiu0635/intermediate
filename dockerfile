@@ -1,4 +1,4 @@
-FROM adoptopenjdk:8u222-b10-jdk-hotspot-bionic
+FROM openjdk:8-jre-buster
 LABEL maintainer="liu.zhao@inspur.com"
 WORKDIR /server
 ADD ./app-0.1.0.jar .
