@@ -1,4 +1,4 @@
-
+[![Build Status](https://travis-ci.com/MrLiu0635/intermediate.svg?branch=liu.zhao)](https://travis-ci.com/MrLiu0635/intermediate)
 
 ```sh
 docker build -t gdc.docker.iec.io/demo:liu.zhao-20201204 -f .\dockerfile .
