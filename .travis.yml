@@ -1,4 +1,5 @@
 language: java
+sudo: false # faster builds
 branches:
   only:
   - liu.zhao
@@ -8,6 +9,8 @@ jdk:
 cache:
   directories:
     - $HOME/.m2
+    
+install: true
 
 script:
   - travis_wait 30 ./mvnw --batch-mode --no-transfer-progress clean install -DskipTests=false -DskipIntegrationTests=false -Dcheckstyle.skip=false -Drat.skip=false -Dmaven.javadoc.skip=true
